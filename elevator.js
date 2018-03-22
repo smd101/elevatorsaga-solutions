@@ -30,7 +30,10 @@
         // エレベータがすべてのタスクを完了して何もしていないときにトリガされます。
         elevator.on("idle", function() {
           console.log("idle");
-          elevator.goToFloor(0);
+          console.log("waitQueue: " + floors.waitQueue);
+          floors.waitQueue.forEach(function(floorNum) {
+            elevator.goToFloor(floorNum);
+          });
         });
         // エレベータが床に到着したときにトリガされます。
         elevator.on("stopped_at_floor", function(floorNum) {
